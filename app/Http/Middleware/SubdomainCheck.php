@@ -12,7 +12,11 @@ class SubdomainCheck
     public function __construct()
     {
         $this->except_urls = [
-            '/login'
+            '/login',
+            '/register',
+            '/home',
+            '/logout',
+            '/'
         ];
     }
 
@@ -25,6 +29,7 @@ class SubdomainCheck
      */
     public function handle($request, Closure $next)
     {
+
         if (config('app.env') != 'testing')
         {
             $domain = $request->capture()->server->get('SERVER_NAME');
@@ -34,10 +39,8 @@ class SubdomainCheck
             $user = Auth::user();
             if ($user != null && $user->organizations()->exists($org->id)) {
                 config([
-                    'database.default' => 'tenant',
                     'database.connections' => [
-                        'tenant' => $org->db_settings,
-                        'default' => [
+                        'tenant' => [
                             'driver' => 'pgsql',
                             'host' => env('DB_HOST', 'localhost'),
                             'port' => env('DB_PORT', '5432'),
@@ -46,12 +49,12 @@ class SubdomainCheck
                             'password' => env('DB_PASSWORD', ''),
                             'charset' => 'utf8',
                             'prefix' => '',
-                            'schema' => 'public',
+                            'schema' => $org->slug,
                             'sslmode' => 'prefer',
                         ],
-                    ]
+                    ],
+                    ['database.default' => 'default']
                 ]);
-                    config(['database.default' => 'tenant']);
             } else {
                 return redirect('/login');
             }
