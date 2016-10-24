@@ -18,7 +18,8 @@ class CreateOrganizationsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->unique('slug');
-            $table->json('db_settings_json')->nullable();
+            $table->string('schema');
+            $table->unique('schema');
             $table->timestamps();
         });
     }
