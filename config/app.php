@@ -178,7 +178,8 @@ return [
         // CityNexus\Providers\BroadcastServiceProvider::class,
         CityNexus\Providers\EventServiceProvider::class,
         CityNexus\Providers\RouteServiceProvider::class,
-        CityNexus\CityNexus\PackageServiceProvider::class
+        CityNexus\CityNexus\PackageServiceProvider::class,
+        CityNexus\DataStore\PackageServiceProvider::class
 
     ],
 
@@ -228,7 +229,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
-
     ],
 
 ];

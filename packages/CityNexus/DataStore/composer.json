@@ -1,0 +1,24 @@
+{
+    "name": "citynexus/datastore",
+    "description": "Dataset Storeage Tool",
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/framework": "5.1.*",
+        "maatwebsite/excel": "~2.0.0",
+        "backup-manager/laravel": "^1.1",
+        "league/flysystem-aws-s3-v3": "^1.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "CityNexus\\DataStore\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sean Alaback",
+            "email": "sean@citynexus.org"
+        }
+    ],
+    "minimum-stability": "dev"
+}

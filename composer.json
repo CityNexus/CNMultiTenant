@@ -22,7 +22,9 @@
         ],
         "psr-4": {
             "CityNexus\\": "app/",
-            "CityNexus\\CityNexus\\": "packages/CityNexus/CityNexus/src"
+            "CityNexus\\CityNexus\\": "packages/CityNexus/CityNexus/src",
+            "CityNexus\\DataStore\\": "packages/CityNexus/DataStore/src"
+
         }
     },
     "autoload-dev": {

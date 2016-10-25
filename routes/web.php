@@ -18,6 +18,12 @@ Auth::routes();
 
 Route::group(['middleware' => ['app']], function () {
 
+    // Import Routes
+    Route::group(['prefix' => 'import'], function (){
+        Route::get('/create', 'ImportController@create');
+
+    });
+
     // Admin Routes
     Route::group(['prefix' => 'admin'], function(){
         Route::get('/', 'AdminController@index');
