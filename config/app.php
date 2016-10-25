@@ -26,6 +26,7 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+    'root_app' => env('ROOT_APP', 'citynexus.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -177,6 +178,7 @@ return [
         // CityNexus\Providers\BroadcastServiceProvider::class,
         CityNexus\Providers\EventServiceProvider::class,
         CityNexus\Providers\RouteServiceProvider::class,
+        CityNexus\CityNexus\PackageServiceProvider::class
 
     ],
 

@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePropertiesTable extends Migration
-{
+class CreatePropertiesTable extends Migration {
+
     /**
      * Run the migrations.
      *
@@ -13,12 +12,10 @@ class CreatePropertiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('properties', function (Blueprint $table) {
+        Schema::create('citynexus_properties', function(Blueprint $table)
+        {
             $table->increments('id');
-            $table->integer('location_id')->nullable();
-            $table->integer('building_id')->nullable();
-            $table->boolean('multi_unit')->default(FALSE);
-            $table->string('name')->nullable();
+            $table->integer('location_id')->unsigned()->nullable();
             $table->string('street_number')->nullable();
             $table->string('street_name')->nullable();
             $table->string('street_type')->nullable();
@@ -26,7 +23,14 @@ class CreatePropertiesTable extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('postal_code')->nullable();
-            $table->softDeletes();
+            $table->integer('map')->nullable();
+            $table->string('lot')->nullable();
+            $table->string('type')->nullable();
+            $table->boolean('is_building')->default(false);
+            $table->boolean('is_unit')->default(false);
+            $table->integer('unit_of')->nullable();
+            $table->boolean('is_lot')->default(false);
+            $table->boolean('review')->default(false);
             $table->timestamps();
         });
     }
@@ -38,6 +42,7 @@ class CreatePropertiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('properties');
+        Schema::drop('citynexus_properties');
     }
+
 }

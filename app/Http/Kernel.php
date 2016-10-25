@@ -29,13 +29,15 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \CityNexus\Http\Middleware\VerifyCsrfToken::class,
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \CityNexus\Http\Middleware\SubdomainCheck::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class
+        ],
+        'app' => [
+            \CityNexus\Http\Middleware\TenantCheck::class
         ],
 
         'api' => [
             'throttle:60,1',
-            'bindings',
+            'bindings'
         ],
     ];
 

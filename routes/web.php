@@ -11,10 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+
+Route::group(['middleware' => ['app']], function () {
+
+    // Admin Routes
+    Route::group(['prefix' => 'admin'], function(){
+        Route::get('/', 'AdminController@index');
+        Route::get('/refresh-migration', 'AdminController@refreshMigrations');
+    });
+
+});
+

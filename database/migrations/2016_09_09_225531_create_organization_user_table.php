@@ -19,6 +19,7 @@ class CreateOrganizationUserTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('title')->nullable();
             $table->string('department')->nullable();
+            $table->json('permissions')->nullable();
             $table->timestamps();
         });
     }

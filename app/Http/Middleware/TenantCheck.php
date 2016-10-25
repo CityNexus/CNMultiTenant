@@ -6,17 +6,12 @@ use CityNexus\Organization;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class SubdomainCheck
+class TenantCheck
 {
-
     public function __construct()
     {
         $this->except_urls = [
             '/login',
-            '/register',
-            '/home',
-            '/logout',
-            '/'
         ];
     }
 
@@ -29,14 +24,16 @@ class SubdomainCheck
      */
     public function handle($request, Closure $next)
     {
-
-        if (config('app.env') != 'testing')
+        if (config('App.env') != 'testing')
         {
-            $domain = $request->capture()->server->get('SERVER_NAME');
 
-        if ($domain != config('app.root_app') && !in_array($request->capture()->server->get('REQUEST_URI'), $this->except_urls)) {
-            $org = Organization::where('slug', $domain)->first();
+
+            $domain = $request->capture()->server->get('SERVER_NAME');
+            $slug = str_replace('.' . config('app.root_app'), '', $domain);
+
+            $org = Organization::where('slug', $slug)->first();
             $user = Auth::user();
+
             if ($user != null && $user->organizations()->exists($org->id)) {
                 config([
                     'database.connections' => [
@@ -49,17 +46,16 @@ class SubdomainCheck
                             'password' => env('DB_PASSWORD', ''),
                             'charset' => 'utf8',
                             'prefix' => '',
-                            'schema' => $org->slug,
+                            'schema' => $org->schema,
                             'sslmode' => 'prefer',
                         ],
-                    ],
-                    ['database.default' => 'default']
+                    ]
                 ]);
+                config(['database.default' => 'tenant']);
             } else {
                 return redirect('/login');
             }
         }
-    }
 
         return $next($request);
     }

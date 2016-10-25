@@ -21,7 +21,8 @@
             "database"
         ],
         "psr-4": {
-            "CityNexus\\": "app/"
+            "CityNexus\\": "app/",
+            "CityNexus\\CityNexus\\": "packages/CityNexus/CityNexus/src"
         }
     },
     "autoload-dev": {
