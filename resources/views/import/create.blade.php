@@ -3,9 +3,11 @@
 @section('title', 'Create New Importer')
 @section('header', 'Create New Importer')
 
-@include('import.aws_uploader')
+
 
 @section('content')
+
+    @include('import.aws_uploader')
 
     <!-- PROGRESSBAR WIZARD -->
     <div class="col-lg-12">

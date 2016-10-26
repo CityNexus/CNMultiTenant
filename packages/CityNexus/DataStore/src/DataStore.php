@@ -10,6 +10,11 @@ namespace CityNexus\DataStore;
 
 class DataStore
 {
+    public function __construct()
+    {
+        $this->aws = new AWS();
+    }
+
     public function storeFile()
     {
         return 'Hello';

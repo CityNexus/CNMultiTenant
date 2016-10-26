@@ -22,7 +22,11 @@ class PackageServiceProvider extends ServiceProvider
         // Load migrations
         $this->loadMigrationsFrom(__DIR__ . '/migrations/');
 
+        // load front end
         require_once __DIR__ . '/DataStore.php';
+
+        // load helpers
+        require_once __DIR__ . '/helpers/AWS.php';
 
     }
 

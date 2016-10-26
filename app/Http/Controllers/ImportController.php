@@ -16,6 +16,8 @@ class ImportController extends Controller
 
     public function create()
     {
-        return view('import.create');
+        $s3FormDetails = $this->datastore->aws->getS3Details(config('datastore.S3_bucket'), config('S3_region'));
+
+        return view('import.create', compact('s3FormDetails'));
     }
 }
